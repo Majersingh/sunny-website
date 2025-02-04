@@ -12,7 +12,7 @@ const testimonials = [
     name: "Sarah Johnson",
     role: "Software Developer",
     content:
-      "The training at Vxios Labs completely transformed my career. The instructors were excellent and the content was up-to-date with industry standards.",
+      "The training at SOV Networks completely transformed my career. The instructors were excellent and the content was up-to-date with industry standards.",
     image: "/placeholder.svg",
   },
   {

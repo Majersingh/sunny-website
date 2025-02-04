@@ -9,6 +9,9 @@ import Carousel from "@/components/carousel"
 import WhyChoose from "@/components/why-choose"
 import FAQ from "@/components/faq"
 import Nav from "@/components/nav"
+import Demo from "@/components/demopopup"
+import SnackBar from "@/components/snackbar"
+import Programme from "@/components/programme"
 
 export const metadata = {
   title: "PyNet Labs - Transform Your Future with Professional Training",
@@ -22,15 +25,18 @@ export default function Page() {
     <div className="relative">
       <Nav />
       <ScrollArea className="h-full w-full">
+      <Demo/>
         <Carousel />
         <Hero />
         <WhyChoose />
         <About />
         <Courses />
+        <Programme/>
         <Testimonials />
         <FAQ />
         <Cta />
         <Footer />
+        <SnackBar/>
       </ScrollArea>
     </div>
   )

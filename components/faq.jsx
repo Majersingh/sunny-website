@@ -7,9 +7,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const faqs = [
   {
-    question: "What does Vxios Labs do?",
+    question: "What does SOV Networks do?",
     answer:
-      "Vxios Labs is a leading IT training institute that provides comprehensive hands-on training in various technology domains. We offer instructor-led live training, career counseling, and placement assistance to help students achieve their career goals in the tech industry.",
+      "SOV Networks is a leading IT training institute that provides comprehensive hands-on training in various technology domains. We offer instructor-led live training, career counseling, and placement assistance to help students achieve their career goals in the tech industry.",
   },
   {
     question: "What can you expect from a public training class?",
@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Where can I enroll for the course?",
     answer:
-      "You can enroll for our courses through multiple channels: \n• Visit our website and fill out the enrollment form \n• Call our admission counselors \n• Visit our nearest training center \n• Email us at admissions@Vxioslabs.com \n• Chat with our support team online",
+      "You can enroll for our courses through multiple channels: \n• Visit our website and fill out the enrollment form \n• Call our admission counselors \n• Visit our nearest training center \n• Email us at admissions@sovnetworks.com \n• Chat with our support team online",
   },
 ]
 

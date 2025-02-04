@@ -5,38 +5,67 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code, Palette, LineChart, Database } from "lucide-react"
+import { Network, Cloud, Shield, Server } from "lucide-react";
 
 const courses = [
   {
-    title: "Web Development",
-    description: "Master modern web development with JavaScript, React, and Node.js",
-    icon: Code,
-    category: "Programming",
-    duration: "12 weeks",
+    title: "CCNA (200-301)",
+    description: "Gain expertise in networking fundamentals, security, routing, and switching.",
+    icon: Network,
+    category: "Networking",
+    duration: "45 days",
+    fees: "₹12,000",
   },
   {
-    title: "UI/UX Design",
-    description: "Learn to create beautiful and functional user interfaces",
-    icon: Palette,
-    category: "Design",
-    duration: "8 weeks",
+    title: "CCNP ENCOR",
+    description: "Advance your networking skills with enterprise core technologies.",
+    icon: Network,
+    category: "Networking",
+    duration: "3 months",
+    fees: "₹40,000",
   },
   {
-    title: "Data Analytics",
-    description: "Analyze and visualize data with Python and modern tools",
-    icon: LineChart,
-    category: "Data Science",
-    duration: "10 weeks",
+    title: "CCNP ENARSI",
+    description: "Specialize in advanced routing and services for enterprise networks.",
+    icon: Network,
+    category: "Networking",
+    duration: "3 months",
+    fees: "₹40,000",
   },
   {
-    title: "Database Management",
-    description: "Master industry leading SQL and NoSQL database systems",
-    icon: Database,
-    category: "IT & Software",
-    duration: "6 weeks",
+    title: "AWS",
+    description: "Master cloud computing with AWS services and architecture.",
+    icon: Cloud,
+    category: "Cloud Computing",
+    duration: "1.5 months",
+    fees: "₹20,000",
   },
-]
+  {
+    title: "Palo Alto",
+    description: "Learn next-gen firewall security and network defense with Palo Alto.",
+    icon: Shield,
+    category: "Cybersecurity",
+    duration: "1.5 months",
+    fees: "₹25,000",
+  },
+  {
+    title: "ASA",
+    description: "Master firewall security and VPN configuration with Cisco ASA.",
+    icon: Shield,
+    category: "Cybersecurity",
+    duration: "1.5 months",
+    fees: "₹25,000",
+  },
+  {
+    title: "CCNA + CCNP Combo",
+    description: "Comprehensive training covering both CCNA and CCNP courses.",
+    icon: Server,
+    category: "Networking",
+    duration: "1.5 months",
+    fees: "₹50,000",
+  },
+];
+
 
 export default function Courses() {
   const ref = useRef(null)

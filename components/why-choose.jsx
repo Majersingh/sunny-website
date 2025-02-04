@@ -61,7 +61,7 @@ export default function WhyChoose() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Why Choose Vxios Labs?</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Why Choose SOV Networks?</h2>
           <p className="mt-4 text-muted-foreground md:text-xl">
             Discover what makes us the preferred choice for IT training
           </p>

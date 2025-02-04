@@ -20,7 +20,7 @@ export default function Cta() {
                   Ready to Start Learning?
                 </h2>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  Join thousands of students already learning with Vxios. Start your journey today!
+                  Join thousands of students already learning with SOV Networks. Start your journey today!
                 </p>
               </div>
               <Button size="lg" className="w-fit p-2">
