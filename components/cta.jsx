@@ -1,16 +1,21 @@
 "use client"
-
+import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useState } from "react"
+
+import Demo from './demopopup'
 
 export default function Cta() {
+  const [bookDemo, setBookdemo]=useState(false)
   const { scrollYProgress } = useScroll()
   const opacity = useTransform(scrollYProgress, [0.7, 0.8], [0, 1])
   const y = useTransform(scrollYProgress, [0.7, 0.8], [50, 0])
-
+ 
   return (
     <>
+      {bookDemo&& <Demo showMe={bookDemo} setShowme={setBookdemo} skipAutoshow={true}/>}
       <section className="py-24">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
@@ -23,9 +28,9 @@ export default function Cta() {
                   Join thousands of students already learning with SOV Networks. Start your journey today!
                 </p>
               </div>
-              <Button size="lg" className="w-fit p-2">
+              <Link href='/signup' className="w-fit p-2 bg-primary text-white rounded-lg  transition-all duration-150 hover:scale-105">
                 Enroll Now
-              </Button>
+              </Link>
             </div>
             <div className="flex items-center justify-center">
               <img
@@ -40,8 +45,8 @@ export default function Cta() {
         </div>
       </section>
       <motion.div style={{ opacity, y }} className="fixed bottom-4 right-4 z-50">
-        <Button size="lg" className="shadow-lg gap-2 p-4">
-          Enroll Now <ArrowRight className="h-4 w-4" />
+        <Button size="lg" className="shadow-lg gap-2 p-4" onClick={()=>setBookdemo(true)}>
+         Book Demo <ArrowRight className="h-4 w-4" />
         </Button>
       </motion.div>
     </>

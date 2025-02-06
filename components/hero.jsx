@@ -1,5 +1,6 @@
 "use client"
 import { useRef } from "react"
+import Link from "next/link"
 import { motion , useInView} from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
@@ -52,12 +53,12 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col gap-2 min-[400px]:flex-row"
             >
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white gap-2 p-1.5">
-                Get Started <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="lg" className="p-1.5 border-primary text-primary hover:bg-primary/10">
-                Browse Courses
-              </Button>
+              <Link href='/signup'  className="rounded-lg p-1 text-base bg-primary hover:bg-primary/90 text-white gap-2 ">
+                Get Started ➜
+              </Link>
+              <Link href='#courses' className="rounded-lg p-1 text-base border border-primary hover:bg-primary/90 text-primary hover:text-white gap-2 ">
+               Beowse Courses
+              </Link>
             </motion.div>
           </motion.div>
           <motion.div

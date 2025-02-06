@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Network, Cloud, Shield, Server } from "lucide-react";
+import BookCourses from '@/components/demopopup'
 
 const courses = [
   {
@@ -57,23 +59,24 @@ const courses = [
     fees: "₹25,000",
   },
   {
-    title: "CCNA + CCNP Combo",
+    title: "(CCNA + CCNP)",
     description: "Comprehensive training covering both CCNA and CCNP courses.",
     icon: Server,
     category: "Networking",
-    duration: "1.5 months",
+    duration: "4.5 months",
     fees: "₹50,000",
   },
 ];
 
-
 export default function Courses() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+  const [bookDemo , setBookDemo]=useState()
 
   return (
-    <section ref={ref} className="py-24" id="courses">
-      <div className="container px-4 md:px-6">
+    <> 
+      {bookDemo && <BookCourses setShowme={setBookDemo} showMe={bookDemo} skipAutoshow={true} requestedCourse={{type:'certification',name:bookDemo}}/>}
+      <div ref={ref} className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -87,9 +90,9 @@ export default function Courses() {
           {courses.map((course, index) => (
             <motion.div
               key={course.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
               whileHover={{ scale: 1.02 }}
               className="cursor-pointer"
             >
@@ -100,9 +103,13 @@ export default function Courses() {
                   <CardDescription>{course.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center mb-4">
                     <Badge className="p-2" variant="secondary">{course.category}</Badge>
                     <span className="text-sm text-muted-foreground">{course.duration}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-semibold text-primary">{course.fees}</span>
+                    <Button variant="default" onClick={()=>setBookDemo(course.title)}>Enroll Now</Button>
                   </div>
                 </CardContent>
               </Card>
@@ -110,7 +117,6 @@ export default function Courses() {
           ))}
         </div>
       </div>
-    </section>
+      </>
   )
 }
-

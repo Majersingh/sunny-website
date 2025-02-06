@@ -9,26 +9,35 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "Software Developer",
-    content:
-      "The training at SOV Networks completely transformed my career. The instructors were excellent and the content was up-to-date with industry standards.",
-    image: "/placeholder.svg",
+    "name": "Ravi Pratap Singh",
+    "company": "Calltek India Pvt Ltd",
+    "designation": "Senior Network Engineer",
+    "profile": "L3",
+    "package": "14 LPA",
+    "review": "SOV Networks provided an excellent learning experience with industry-relevant content and hands-on training."
   },
   {
-    name: "Michael Chen",
-    role: "UX Designer",
-    content:
-      "I learned more in 8 weeks than I did in a year of self-study. The practical projects and feedback were invaluable to my growth as a designer.",
-    image: "/placeholder.svg",
+    "name": "Om Prakash Kewat",
+    "company": "Calltek India Pvt Ltd",
+    "designation": "Senior Network Engineer",
+    "profile": "L3",
+    "package": "14 LPA",
+    "review": "The instructors at SOV Networks were highly experienced, making complex topics easy to understand."
   },
   {
-    name: "Emily Brown",
-    role: "Data Analyst",
-    content:
-      "The data analytics course provided me with the skills I needed to land my dream job. The hands-on approach to learning made complex concepts easy to understand.",
-    image: "/placeholder.svg",
+    "name": "Subhendra Shivam",
+    "company": "TCS",
+    "designation": "Network Engineer",
+    "package": "7.5 LPA",
+    "review": "SOV Networks' structured training helped me gain confidence and secure a great job opportunity."
   },
+  {
+    "name": "LINKAN NAYAK",
+    "company": "Capgemini",
+    "designation": "Network Engineer",
+    "package": "9 LPA",
+    "review": "Highly recommend SOV Networks for anyone looking to upskill in networking with real-world practical insights."
+  }
 ]
 
 export default function Testimonials() {
@@ -75,11 +84,11 @@ export default function Testimonials() {
                     transition={{ duration: 0.3 }}
                     className="text-lg mb-4"
                   >
-                    {testimonials[currentIndex].content}
+                    {testimonials[currentIndex].review}
                   </motion.p>
                   <div className="flex items-center gap-4">
                     <img
-                      src={testimonials[currentIndex].image || "/placeholder.svg"}
+                      src={testimonials[currentIndex].image || "/avatar.jpeg"}
                       alt={testimonials[currentIndex].name}
                       className="rounded-full w-12 h-12 object-cover border-2 border-primary"
                       width={48}
@@ -87,7 +96,8 @@ export default function Testimonials() {
                     />
                     <div>
                       <h4 className="font-semibold">{testimonials[currentIndex].name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonials[currentIndex].role}</p>
+                      <p className="text-sm text-muted-foreground">{testimonials[currentIndex].designation}</p>
+                      <p className="text-sm text-muted-foreground">{testimonials[currentIndex].company} {testimonials[currentIndex].package}</p>
                     </div>
                   </div>
                 </CardContent>

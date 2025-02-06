@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 import { useInView } from "framer-motion"
 import {NetworkIcon} from 'lucide-react'
+import BookCourses from '@/components/demopopup'
 
 
 const programs = [
@@ -35,9 +36,10 @@ const programs = [
 export default function JobGuaranteePrograms() {
   const inViewRef = useRef(null);
   const isInView = useInView(inViewRef, { once: true })
+  const [bookDemo , setBookDemo]=useState()
 
   return (
-    <section ref={inViewRef} className="py-12" id="programs">
+    <>  {bookDemo && <BookCourses setShowme={setBookDemo} showMe={bookDemo} skipAutoshow={true} requestedCourse={{type:'program',name:bookDemo}}/>}
       <div className="container px-4 md:px-6">
         <motion.div
           ref={inViewRef}
@@ -79,13 +81,13 @@ export default function JobGuaranteePrograms() {
                   <p className="mt-2 text-gray-700">
                     <strong>Package:</strong> {program.package}
                   </p>
-                  <Button className="mt-4 w-full">Enroll Now</Button>
+                  <Button className="mt-4 w-full" onClick={()=>setBookDemo(program.title)}>Enroll Now</Button>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </>
   );
 }

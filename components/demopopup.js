@@ -8,14 +8,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import Spinner from'@/components/spinner'
+
+import { database } from "@/lib/firebase"; // Import Firestore from your Firebase setup
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"; // Firestore functions
+
 
 // Form validation schema
 const formSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
   mobile: z.string().regex(/^\d{10}$/, "Mobile must be 10 digits"),
   email: z.string().email("Invalid email address"),
-  program: z.string().nonempty("Please select a program"),
-  course: z.string().nonempty("Please select a course"),
+  courseType: z.string().nonempty("Please select a program"),
+  courseName: z.string().nonempty("Please select a course"),
 })
 
 // Sample allCourses and courses
@@ -102,21 +107,42 @@ const allCourses = {
     ],
   };
 
-export default function EnrollmentModal() {
-  const [isOpen, setIsOpen] = useState(false)
+export default function BookDemo({showMe ,setShowme ,skipAutoshow , requestedCourse}) {// skip autoshow mean it opening by clicking btn
+  const [isOpen, setIsOpen] = useState(false||showMe)
   const [selectedProgram, setSelectedProgram] = useState("")
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
     resolver: zodResolver(formSchema),
   })
+  const [isLoading , setLoading]=useState(null)
 
-  const onSubmit = (data) => {
-    console.log("Form Submitted", data)
-    setIsOpen(false)
-  }
-  console.log(1)
+    const onSubmit = async (data) => {
+        try {
+         setLoading(true)
+          await addDoc(collection(database, "demo-booking"), {
+            ...data,
+            timestamp: serverTimestamp(), // Add a timestamp
+          });
+          setLoading(false)
+          alert('Submitted Successfully, We will contact you ASAP!')
+          console.log("Demo Booking Added:", data);
+          setIsOpen(false);
+        } catch (error) {
+            setLoading(false);
+            alert('Failed To Book')
+          console.error("Error adding demo booking:", error);
+        }
+        setIsOpen(false)
+      };
+  
 
   useEffect(()=>{
-    console.log(2)
+    if(requestedCourse)
+    {   console.log(requestedCourse,"ooooooooooo")
+        setValue('courseType',requestedCourse.type)
+        setValue('courseName',requestedCourse.name)
+    }
+    if(skipAutoshow)
+        return;
     const int=setTimeout(()=>{
         setIsOpen(true)
     },2000)
@@ -125,9 +151,8 @@ export default function EnrollmentModal() {
         setIsOpen(false)
     }
   },[])
+  if(isOpen)
   return (
-    <>
-      {!isOpen? <></>: (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
@@ -148,39 +173,38 @@ export default function EnrollmentModal() {
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
 
               {/* Program Dropdown */}
-              <Select onValueChange={(value) => { setSelectedProgram(value); setValue("program", value) }}>
+              <Select onValueChange={(value) => { setSelectedProgram(value); setValue("courseType", value) }}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select Program" />
+                  <SelectValue placeholder={requestedCourse?requestedCourse.type.toUpperCase():'Select Program'} />
                 </SelectTrigger>
                 <SelectContent className="w-80 bg-white">
                   {Object.keys(allCourses).map((program) => (
-                    <SelectItem  className='p-1' key={program} value={program}>{program}</SelectItem>
+                    <SelectItem  className='p-1' key={program} value={program}>{program.toUpperCase()}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               {errors.program && <p className="text-red-500 text-sm">{errors.program.message}</p>}
 
               {/* Course Dropdown (Dependent on Program) */}
-              <Select disabled={!selectedProgram} onValueChange={(value) => setValue("course", value)}>
+              <Select disabled={!selectedProgram} onValueChange={(value) => setValue("courseName", value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder={selectedProgram ? "Select Course" : "Select Program First"} />
+                  <SelectValue placeholder={requestedCourse? requestedCourse.name.toUpperCase():(selectedProgram ? "Select Course" : "Select Program First")} />
                 </SelectTrigger>
-                <SelectContent className="w-80 bg-white">
+                <SelectContent className="w-72 bg-white">
                   {selectedProgram && allCourses[selectedProgram].map((course) => (
-                    <SelectItem className='p-1' key={course.title} value={course.title}>{course.title}</SelectItem>
+                    <SelectItem className='p-1' key={course.title} value={course.title}>{course.title.toUpperCase()}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               {errors.course && <p className="text-red-500 text-sm">{errors.course.message}</p>}
 
               <div className="flex justify-between">
-                 <Button type="button" onClick={() => setIsOpen(false)} className="bg-gray-400 hover:bg-gray-500">Cancel</Button>
-                <Button type="submit" className="bg-green-500 hover:bg-green-600">Submit</Button>
+                 <Button type="button" onClick={() => {setIsOpen(false); setShowme&&setShowme(false)}} className="bg-gray-400 hover:bg-gray-500">Cancel</Button>
+                <Button type="submit" className="bg-green-500 hover:bg-green-600">{isLoading?<Spinner/>:'Book Now'}</Button>
               </div>
             </form>
           </motion.div>
         </div>
-      )}
-    </>
-  )
+   )
+   else <></>
 }

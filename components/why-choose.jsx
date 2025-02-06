@@ -81,8 +81,8 @@ function Card({feature ,index}){
       <motion.div
         ref={ref}
         key={index}
-        initial={{ opacity: 0, x: index%2===0 ?-50*(index+1):50*(index+1)}}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index%2===0 ?-50*(index+1):50*(index+1) }}
+        initial={{ opacity: 0, x: index%2===0 ?-50:50}}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index%2===0 ?-50:50}}
         transition={{ duration: 0.3, delay: index * 0.1 }}
         className="relative group"
       >

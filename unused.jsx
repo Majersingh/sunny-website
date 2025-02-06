@@ -12,6 +12,7 @@ import Nav from "@/components/nav"
 import Demo from "@/components/demopopup"
 import SnackBar from "@/components/snackbar"
 import Programme from "@/components/programme"
+import F from "@/components/firebase"
 
 export const metadata = {
   title: "PyNet Labs - Transform Your Future with Professional Training",
@@ -24,9 +25,10 @@ export default function Page() {
   return (
     <div className="relative">
       <Nav />
+      <F/>
       <ScrollArea className="h-full w-full">
       <Demo/>
-        <Carousel />
+        {/* <Carousel /> */}
         <Hero />
         <WhyChoose />
         <About />

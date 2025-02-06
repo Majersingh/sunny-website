@@ -7,6 +7,11 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+
+import { auth } from "@/lib/firebase";
+import { signOut ,onAuthStateChanged} from "firebase/auth";
+
+
 const navItems = [
   { title: "Certification Courses", href: "#courses", dropdown: [{ title: "CCNA ( 200-301 )", href: "#courses" },{ title: "CCNP ENCOR", href: "#courses" },
     { title: "CCNP ENARSI", href: "#courses" },{ title: "AWS", href: "#courses" } ,{ title: "PALO ALTO", href: "#courses" },
@@ -21,6 +26,7 @@ export default function Nav() {
   const [hoveredItem, setHoveredItem] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isAuthenticated, setAuthentication]=useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +36,14 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if(user) setAuthentication(true)
+    else console.log("user Not Loggged In")
+    });
+    return () => unsubscribe();
+  }, []);
+  if(!isAuthenticated)
   return (
     <>
       <nav
@@ -72,7 +86,8 @@ export default function Nav() {
                   )}
                 </div>
               ))}
-              <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
+               <Link  href='/signup' className="bg-primary rounded-lg text-center p-1 text-white hover:bg-primary/90 px-2 ">Join Now</Link>
+               <Link  href='/login' className="border border-primary rounded-lg text-center p-1 text-green-600 hover:text-green-900">LogIn</Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -87,16 +102,16 @@ export default function Nav() {
         </div>
 
         {/* Mobile Navigation */}
-        <AnimatePresence>
+        <AnimatePresence className='shadow-inner'>
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t"
+              className="md:hidden bg-white border-t "
             >
-              <div className="container px-4 py-4">
-                <div className="flex flex-col space-y-4">
+              <div className="container p-4">
+                <div className="flex flex-col space-y-4 ">
                   {navItems.map((item, index) => (
                     <div key={index} className="relative group" onMouseEnter={() => setHoveredItem(item.title)} onMouseLeave={() => setHoveredItem(null)}>
                       <Link href={item.href} className="text-secondary hover:text-primary transition-colors">
@@ -122,7 +137,7 @@ export default function Nav() {
                       )}
                     </div>
                   ))}
-                  <Button className="bg-primary hover:bg-primary/90 w-full">Get Started</Button>
+                  <Link onClick={() => setIsOpen(!isOpen)} href='/signup' className="bg-primary rounded-lg text-center p-1 text-white hover:bg-primary/90 w-full">Join Now</Link>
                 </div>
               </div>
             </motion.div>
@@ -130,7 +145,7 @@ export default function Nav() {
         </AnimatePresence>
       </nav>
       {/* Spacer for fixed navbar */}
-      <div className="h-16" />
+      <div className="h-[72px]" />
     </>
   )
 }
