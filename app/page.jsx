@@ -22,7 +22,7 @@ export const metadata = {
 export default function Page() {
   return (
     <div className="relative">
-        {/* <Demopopup/> */}
+        <Demopopup/>
         <Carousel />
         <Hero />
         <WhyChoose />
