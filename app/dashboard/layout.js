@@ -70,7 +70,7 @@ export default function DashboardLayout({ children }) {
                 transition={{ duration: 0.3 }}
                 className="absolute right-0 mt-2 w-auto bg-white shadow-lg rounded-lg p-2"
               >
-                <p className="text-center text-sm font-semibold">{user.email}</p>
+                <p className="text-center text-sm font-semibold text-wrap">{user?.email}</p>
                 <Button variant="destructive" className="w-full mt-2 text-red-500 active:text-slate-400" onClick={handleLogout}>Logout</Button>
               </motion.div>
             )}
@@ -86,9 +86,9 @@ export default function DashboardLayout({ children }) {
                     className="m-2 shadow-2xl"
                     onClick={() => setIsOpen(!isOpen)}
                 >
-                <Menu className="h-3 w-3" />
+                <Menu className="h-4 w-4" />
             </Button>
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2 text-xl">
               <span className="text- font-bold text-primary">SOV</span>
               <span className="text- font-bold">Networks</span>
               <Image src={'/sovlogo.jpeg'} alt="SOV Networks Logo" width={40} height={80} />
@@ -108,7 +108,7 @@ export default function DashboardLayout({ children }) {
                     transition={{ duration: 0.3 }}
                     className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg p-2"
                 >
-                    <p className="text-center text-sm font-semibold">John Doe</p>
+                    <p className="text-center text-sm font-semibold overflow-hidden">{user?.email}</p>
                     <Button variant="destructive" className="w-full mt-2 text-red-500  active:text-slate-400" onClick={handleLogout}>Logout</Button>
                 </motion.div>
                 )}
@@ -143,7 +143,7 @@ export default function DashboardLayout({ children }) {
         </motion.aside>
 
         {/* Mobile Sidebar */}
-        <div className="relative md:hidden z-10">
+        <div className="relative md:hidden z-50">
             <AnimatePresence>
                 {isOpen && (
                 <motion.div
@@ -194,7 +194,7 @@ export default function DashboardLayout({ children }) {
             >
             {children}
             </motion.main>
-         </div>
+      </div>
     </div>
     </>
   );

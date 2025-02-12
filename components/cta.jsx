@@ -34,7 +34,7 @@ export default function Cta() {
             </div>
             <div className="flex items-center justify-center">
               <img
-                src="/redy.jpeg"
+                src="/readytoenroll.webp"
                 alt="Students collaborating"
                 className="rounded-lg object-cover"
                 width={400}

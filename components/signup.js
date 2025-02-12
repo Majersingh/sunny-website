@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState  ,useEffect} from "react";
 import { useForm } from "react-hook-form";
 import { auth } from "../lib/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword  , onAuthStateChanged} from "firebase/auth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -39,6 +39,14 @@ export default function Signup() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if(user) router.push('/dashboard')
+    else console.log("user Not Loggged In in signup")
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className="flex w-screen mt-4 justify-center p-2">

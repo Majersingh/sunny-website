@@ -53,7 +53,7 @@ export default function WhyChoose() {
   const isInView = useInView(ref, { once: true })
  
   return (
-    <section ref={ref} className="m-2 mt-12 py-4 bg-gray-50">
+    <section ref={ref} className="m-2  py-4 bg-gray-50">
       <div className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

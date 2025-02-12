@@ -23,7 +23,7 @@ export default function About() {
 
   useEffect(() => {
     if (isInView) {
-      const duration = 1500; // 3 seconds
+      const duration = 3000; // 3 seconds
       const intervalTime = 30; // Update every 30ms
       const steps = duration / intervalTime;
 

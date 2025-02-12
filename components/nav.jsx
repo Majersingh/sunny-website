@@ -5,11 +5,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 
 import { auth } from "@/lib/firebase";
-import { signOut ,onAuthStateChanged} from "firebase/auth";
+import { onAuthStateChanged} from "firebase/auth";
 
 
 const navItems = [
@@ -129,7 +128,7 @@ export default function Nav() {
                         >  
                         
                           {item.dropdown.map((subItem, subIndex) => (
-                            <Link key={subIndex} href={subItem.href} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
+                            <Link onClick={()=>setIsOpen(false)} key={subIndex} href={subItem.href} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
                               {subItem.title}
                             </Link>
                           ))}
