@@ -3,15 +3,18 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const images = [
   {
     url: "/sovtranformcareer.webp",
-    title: "Transform Your Career",
-    description: "Join our comprehensive training programs",
+    title: "",
+    description: "",
+  },
+  {
+    url: "/progcarousel.jpeg",
+    title: "",
+    description: "",
   },
   {
     url: "/businessexp.webp",

@@ -51,9 +51,7 @@ export default function DashboardLayout({ children }) {
     <div className="hidden md:block w-screen">
      <header className="flex justify-between px-8 items-center p-1 shadow-md">
         <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-primary">SOV</span>
-            <span className="text-2xl font-bold">Networks</span>
-            <Image src={'/sovlogo.jpeg'} alt="SOV Networks Logo" width={40} height={80} />
+            <Image src={'/sovlogo.png'} alt="SOV Networks Logo" className="p-1 object-fit" width={160} height={120} />
         </Link>
           <div className="relative z-20">
             <Avatar
@@ -80,7 +78,7 @@ export default function DashboardLayout({ children }) {
 
      {/* for mobile nav */}
     <div className="md:hidden w-screen">
-        <div className=" flex justify-between items-center pr-4">
+        <div className=" flex justify-between items-center">
             <Button
                     variant="outline"
                     className="m-2 shadow-2xl"
@@ -89,14 +87,12 @@ export default function DashboardLayout({ children }) {
                 <Menu className="h-4 w-4" />
             </Button>
             <Link href="/" className="flex items-center space-x-2 text-xl">
-              <span className="text- font-bold text-primary">SOV</span>
-              <span className="text- font-bold">Networks</span>
-              <Image src={'/sovlogo.jpeg'} alt="SOV Networks Logo" width={40} height={80} />
+              <Image src={'/sovlogo.png'} alt="SOV Networks Logo" className="object-fit p-1" width={160} height={120} />
             </Link>
             <div className="relative z-20">
                 <Avatar
                 onClick={() => setShowProfile(!showProfile)}
-                className="cursor-pointer border-2 border-gray-400"
+                className="cursor-pointer border-2 border-gray-400 w-8 h-8"
                 >
                 <AvatarImage src="/profile.jpg" alt="User" />
                 <AvatarFallback>U</AvatarFallback>
@@ -190,7 +186,7 @@ export default function DashboardLayout({ children }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex-1 p-6"
+            className="flex-1"
             >
             {children}
             </motion.main>

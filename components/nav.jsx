@@ -24,16 +24,8 @@ const navItems = [
 export default function Nav() {
   const [hoveredItem, setHoveredItem] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isAuthenticated, setAuthentication]=useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -46,16 +38,14 @@ export default function Nav() {
   return (
     <>
       <nav
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white/90 backdrop-blur-md shadow-md" : "bg-transparent"
-        }`}
+        className={`fixed w-full z-50 transition-all duration-300 bg-white`}
       >
-        <div className="container px-4 md:px-6 py-4">
+        <div className="container px-4 md:px-6 pt-2 pb-1">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-primary">SOV</span>
-              <span className="text-2xl font-bold">Networks</span>
-              <Image src={'/sovlogo.jpeg'} alt="SOV Networks Logo" width={40} height={80} />
+              {/* <span className="text-2xl font-bold text-primary">SOV</span> */}
+              {/* <span className="text-2xl font-bold">Networks</span> */}
+              <Image src={'/sovlogo.png'} alt="SOV Networks Logo" className="object-fit" width={160} height={120} />
             </Link>
 
             {/* Desktop */}
