@@ -74,7 +74,7 @@ export default function About() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="max-w-[600px] text-muted-foreground md:text-xl"
               >
-                SOV Networks offers top-tier networking courses designed to equip you with real-world skills in cybersecurity, routing, switching, and troubleshooting. Our **job guarantee program** ensures you land a high-paying role upon successful completion. With expert instructors, hands-on training, and strong industry ties, **SOV Networks is your launchpad to a thriving IT career.**
+                SOV Networks offers top-tier networking courses designed to equip you with real-world skills in cybersecurity, routing, switching, and troubleshooting. Our <strong>job guarantee program</strong> ensures you land a high-paying role upon successful completion. With expert instructors, hands-on training, and strong industry ties, <bold><span className="text-green-500">SOV Networks</span> is your launchpad to a thriving IT career</bold>.
               </motion.p>
             </div>
           </div>

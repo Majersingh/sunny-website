@@ -45,7 +45,7 @@ export default function JobGuaranteePrograms() {
           setShowme={setBookDemo}
           showMe={bookDemo}
           skipAutoshow={true}
-          requestedCourse={{ type: 'program', name: bookDemo }}
+          requestedCourse={{ type: 'job guarantee program', name: bookDemo }}
         />
       )}
       <div className="container px-4 md:px-6">

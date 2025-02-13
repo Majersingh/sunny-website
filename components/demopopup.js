@@ -83,7 +83,7 @@ const allCourses = {
         fees: "₹50,000",
       },
     ],
-    program: [
+    'job guarantee program': [
       {
         title: "Network Expert Program",
         description: "Master CCNA, CCNP, and job-ready skills.",
@@ -109,6 +109,7 @@ const allCourses = {
 
 export default function BookDemo({showMe ,setShowme ,skipAutoshow , requestedCourse}) {// skip autoshow mean it opening by clicking btn
   const [isOpen, setIsOpen] = useState(false||showMe)
+  const [selectedMode, setSelectedMode] = useState("");
   const [selectedProgram, setSelectedProgram] = useState("")
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
     resolver: zodResolver(formSchema),
@@ -120,7 +121,8 @@ export default function BookDemo({showMe ,setShowme ,skipAutoshow , requestedCou
          setLoading(true)
           await addDoc(collection(database, "demo-booking"), {
             ...data,
-            timestamp: serverTimestamp(), // Add a timestamp
+            bookingTime: serverTimestamp(), // Add a timestamp,
+            learningMode:selectedMode
           });
           setLoading(false)
           alert('Submitted Successfully, We will contact you ASAP!')
@@ -171,6 +173,23 @@ export default function BookDemo({showMe ,setShowme ,skipAutoshow , requestedCou
 
               <Input placeholder="Email" {...register("email")} />
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+              <p className="text-sm text-gray-500">Training Type :</p>
+              <div className=" flex justify-evenly flex-wrap text-gray-500">
+              {["Online", "Classroom", "Recorded", "Other"].map((mode) => (
+                    <div key={mode} className="flex items-center gap-2">
+                    <input
+                        type="radio"
+                        id={mode}
+                        name="courseMode"
+                        value={mode}
+                        checked={selectedMode === mode}
+                        onChange={(e) => setSelectedMode(e.target.value)}
+                        className="w-4 h-4"
+                    />
+                    <label htmlFor={mode} className="text-sm font-medium">{mode}</label>
+                    </div>
+                ))}
+              </div>
 
               {/* Program Dropdown */}
               <Select onValueChange={(value) => { setSelectedProgram(value); setValue("courseType", value) }}>

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import SubscribeForm from '@/components/subscribeinfooter'
 
 export default function Footer() {
   return (
@@ -30,18 +31,18 @@ export default function Footer() {
             <h4 className="text-lg font-semibold">Courses</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
-                  Web Development
+                <Link href="#courses" className="text-sm text-muted-foreground hover:text-foreground">
+                  CCNA(200-301)
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
-                  UI/UX Design
+                <Link href="#courses" className="text-sm text-muted-foreground hover:text-foreground">
+                  CCNP ENCOR
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
-                  Data Analytics
+                <Link href="#courses" className="text-sm text-muted-foreground hover:text-foreground">
+                 AWS
                 </Link>
               </li>
             </ul>
@@ -50,17 +51,17 @@ export default function Footer() {
             <h4 className="text-lg font-semibold">Support</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link href="mailto:support@sovnetworks.com?subject='Help Center'" className="text-sm text-muted-foreground hover:text-foreground">
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link href="mailto:support@sovnetworks.com?subject='Contact US'" className="text-sm text-muted-foreground hover:text-foreground">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link href="#faq" className="text-sm text-muted-foreground hover:text-foreground">
                   FAQs
                 </Link>
               </li>
@@ -84,16 +85,7 @@ export default function Footer() {
             </div>
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">Subscribe to our newsletter</p>
-              <form className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                />
-                <button className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">
-                  Subscribe
-                </button>
-              </form>
+               <SubscribeForm/>
             </div>
           </div>
         </div>
@@ -104,4 +96,3 @@ export default function Footer() {
     </footer>
   )
 }
-

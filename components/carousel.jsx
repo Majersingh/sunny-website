@@ -69,7 +69,8 @@ export default function Carousel() {
                 alt={image.title}
                 fill
                 className="object-fit"
-                priority
+                lazy 
+                placeholder="empty"
               />
 
               {/* Overlay */}

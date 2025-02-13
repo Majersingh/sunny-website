@@ -12,6 +12,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Spinner from'@/components/spinner'
 
+
+import { database } from "@/lib/firebase"; // Import Firestore from your Firebase setup
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"; // Firestore functions
+
+
 export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -30,6 +35,12 @@ export default function Signup() {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       console.log("User signed up:", userCredential.user);
+     
+      addDoc(collection(database, "users"), {
+        ...data,
+        createdAt: serverTimestamp(), // Add a timestamp
+      });
+      
       router.push('/dashboard')
       setError(""); // Clear errors on successful signup
     } catch (error) {
@@ -83,7 +94,27 @@ export default function Signup() {
               transition={{ duration: 0.4, delay: 0.2 }}
               className="space-y-4"
             >
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                {/* Name Field */}
+                <Input
+                  type="text"
+                  placeholder="Full Name"
+                  {...register("name", {
+                    required: "Name is required",
+                    minLength: { value: 2, message: "Name must be at least 2 characters" },
+                  })}
+                />
+                {errors.name && (
+                  <motion.p
+                    className="text-red-500 text-sm"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {errors.name.message}
+                  </motion.p>
+                )}
+
                 {/* Email Field */}
                 <Input
                   type="email"
@@ -104,6 +135,29 @@ export default function Signup() {
                     transition={{ duration: 0.3 }}
                   >
                     {errors.email.message}
+                  </motion.p>
+                )}
+
+                {/* Mobile Number Field */}
+                <Input
+                  type="tel"
+                  placeholder="Mobile Number"
+                  {...register("mobile", {
+                    required: "Mobile number is required",
+                    pattern: {
+                      value: /^[0-9]{10}$/,
+                      message: "Enter a valid 10-digit mobile number",
+                    },
+                  })}
+                />
+                {errors.mobile && (
+                  <motion.p
+                    className="text-red-500 text-sm"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {errors.mobile.message}
                   </motion.p>
                 )}
 
@@ -142,7 +196,7 @@ export default function Signup() {
                 {/* Submit Button */}
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button className="w-full" type="submit" disabled={isLoading}>
-                    {isLoading ? <Spinner/> : "Sign Up"}
+                    {isLoading ? <Spinner /> : "Sign Up"}
                   </Button>
                 </motion.div>
               </form>
