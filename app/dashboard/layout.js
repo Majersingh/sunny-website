@@ -31,6 +31,7 @@ export default function DashboardLayout({ children }) {
     try {
       await signOut(auth);
       console.log("User logged out");
+      window.location.href='/'
     } catch (error) {
       console.error("Logout error:", error.message);
     }
@@ -50,7 +51,7 @@ export default function DashboardLayout({ children }) {
     {/* for Destop nav */}
     <div className="hidden md:block w-screen">
      <header className="flex justify-between px-8 items-center p-1 shadow-md">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/dashboard" className="flex items-center space-x-2">
             <Image src={'/sovlogo.png'} alt="SOV Networks Logo" className="p-1 object-fit" width={160} height={120} />
         </Link>
           <div className="relative z-20">
@@ -86,7 +87,7 @@ export default function DashboardLayout({ children }) {
                 >
                 <Menu className="h-4 w-4" />
             </Button>
-            <Link href="/" className="flex items-center space-x-2 text-xl">
+            <Link href="/dashboard" className="flex items-center space-x-2 text-xl">
               <Image src={'/sovlogo.png'} alt="SOV Networks Logo" className="object-fit p-1" width={160} height={120} />
             </Link>
             <div className="relative z-20">
@@ -147,7 +148,7 @@ export default function DashboardLayout({ children }) {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute left-0 top-0 w-screen bg-gray-900 text-white shadow-lg rounded-md p-4"
+                    className="absolute left-0 top-0 w-[93vw] mx-[3.5vw]  bg-gray-900 text-white shadow-lg rounded-md p-4"
                 >
                     <nav className="space-y-2">
                     {menuItems.map((item, index) => (

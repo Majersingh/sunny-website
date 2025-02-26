@@ -10,14 +10,7 @@ import Demopopup from "@/components/demopopup"
 import SnackBar from "@/components/snackbar"
 import Programme from "@/components/programme"
 import Partners from "@/components/ourpartners"
-
-
-export const metadata = {
-  title: "SOV Networks - Transform Your Future with Professional Training",
-  description:
-    "Join SOV Networks to master in-demand skills with expert-led training courses. Start your learning journey today!",
-  keywords: "professional training, IT courses, technology education, learning platform",
-}
+import Blogs from "@/components/blogcard"
 
 export default function Page() {
   return (
@@ -33,6 +26,7 @@ export default function Page() {
         <section  className="py-12" id="programs">
           <Programme/>
         </section>
+        <Blogs/>
         <Partners/>
         <Testimonials />
         <FAQ />

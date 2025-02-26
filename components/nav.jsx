@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X  , PhoneOutgoing} from "lucide-react"
 
 
 import { auth } from "@/lib/firebase";
@@ -17,7 +17,7 @@ const navItems = [
     { title: "ASA", href: "#courses" },{ title: "CCNA + CCNP COMBO", href: "#courses" }] },
   { title: "Job Guarantee Program", href: "#programs", dropdown: [{ title: "NETWORK EXPERT PROGRAM", href: "#programs" }, { title: "NETWORK SPECIALIST PROGRAM", href: "#programs" }] },
   { title: "About", href: "#about" },
-  { title: "Blogs", href: "/blogs" },
+  { title: "Blogs", href: "#blogs" },
   { title: "Contact", href: "/#footer" },
 ]
 
@@ -39,7 +39,8 @@ export default function Nav() {
     <>
       <nav
         className={`fixed w-full z-50 transition-all duration-300 bg-white`}
-      >
+      > 
+      <WhatsAppBanner/>
         <div className="container px-4 md:px-6 pt-2 pb-1">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-2">
@@ -103,7 +104,7 @@ export default function Nav() {
                 <div className="flex flex-col space-y-4 ">
                   {navItems.map((item, index) => (
                     <div key={index} className="relative group" onMouseEnter={() => setHoveredItem(item.title)} onMouseLeave={() => setHoveredItem(null)}>
-                      <Link href={item.href} className="text-secondary hover:text-primary transition-colors">
+                      <Link href={item.href} onClick={()=>!item?.dropdown && setIsOpen(false) } className="text-secondary hover:text-primary transition-colors">
                         {item.title}
                       </Link>
 
@@ -138,4 +139,25 @@ export default function Nav() {
     </>
   )
 }
+
+
+const WhatsAppBanner = () => {
+  return (
+    <>
+      <div className="w-full bg-green-500 text-white py-2 px-4 flex items-center justify-center">
+        <p className="">
+          🤔 Need Help? Contact Us  
+        </p>
+        <a
+          href="https://wa.me/+918595161998?text=Hi, I need guidence." // Replace with your WhatsApp number
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-3 flex items-center gap-2 text-green-600 px-3 rounded-lg font-semibold hover:bg-black transition"
+        >
+           <PhoneOutgoing className="text-white"/>
+        </a>
+      </div>
+    </>
+  );
+};
 

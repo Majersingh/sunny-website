@@ -16,7 +16,7 @@ const programs = [
     duration: "4.5 - 6 Months",
     category: "Job Guarantee",
     originalFees: "₹60,000",
-    discountedFees: "₹45,000",
+    discountedFees: "₹50,000",
     package: "Up to 5 LPA for Freshers, 30-50% Hike for Experienced",
     image: "/networlspeprog.webp",
   },
@@ -84,7 +84,7 @@ export default function JobGuaranteePrograms() {
                   <CardTitle className="text-lg">{program.title}</CardTitle>
                   <CardDescription className="text-slate-100">{program.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="relative z-10 text-white">
+                <CardContent className="relative z-10 text-white flex flex-col">
                   <p className="text-sm"><strong>Topics:</strong> {program.topics}</p>
                   <div className="flex justify-between items-center mt-2">
                     <Badge className="p-2 bg-green-600 text-slate-100">{program.category}</Badge>

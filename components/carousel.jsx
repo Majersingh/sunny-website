@@ -35,7 +35,7 @@ export default function Carousel() {
   useEffect(() => {
     let autoplay = setInterval(() => {
       emblaApi?.scrollNext();
-    }, 50000);
+    }, 3000);
 
     return () => clearInterval(autoplay);
   }, [emblaApi]);
