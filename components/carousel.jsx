@@ -59,9 +59,9 @@ export default function Carousel() {
             <motion.div
               key={index}
               className="relative min-w-full flex-shrink-0 h-full"
-              initial={{ opacity: 0.7, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+              // initial={{ opacity: 0.7, scale: 0.9 }}
+              // animate={{ opacity: 1, scale: 1 }}
+              // transition={{ duration: 0.5 }}
             >
               {/* Image tag instead of background-image */}
               <Image

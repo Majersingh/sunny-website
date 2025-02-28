@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="border-t" id='footer'>
       <div className="container px-4 md:px-6 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h4 className="text-lg font-semibold">About</h4>
             <ul className="space-y-2">
               <li>
@@ -26,7 +26,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Courses</h4>
             <ul className="space-y-2">
@@ -67,7 +67,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 col-span-2">
             <h4 className="text-lg font-semibold">Connect</h4>
             <div className="flex space-x-4">
               <Link href="#" className="text-muted-foreground hover:text-foreground">
@@ -76,7 +76,7 @@ export default function Footer() {
               <Link href="#" className="text-muted-foreground hover:text-foreground">
                 <Twitter className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-foreground">
+              <Link href="https://www.instagram.com/sovnetworks/" className="text-muted-foreground hover:text-foreground">
                 <Instagram className="h-5 w-5" />
               </Link>
               <Link href="#" className="text-muted-foreground hover:text-foreground">

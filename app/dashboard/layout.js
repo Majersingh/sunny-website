@@ -196,5 +196,25 @@ export default function DashboardLayout({ children }) {
     </>
   );
   else
-  return <p className="w-screen text-center">Loading...</p>
+  return <SkeletonLoader/>
 }
+
+const SkeletonLoader = () => {
+    return (
+      <div className="space-y-4 flex-col items-center justify-center">
+        {/* Image Skeleton */}
+        <div className="h-40 w-full bg-gray-300 rounded-lg animate-pulse"></div>
+  
+        {/* Title Skeleton */}
+        <div className="h-6 w-3/4 bg-gray-300 rounded animate-pulse"></div>
+  
+        {/* Paragraph Skeleton */}
+        <div className="space-y-2">
+          <div className="h-8 w-full bg-gray-300 rounded animate-pulse text-center p-1"> Loading...</div>
+          <div className="h-4 w-5/6 bg-gray-300 rounded animate-pulse"></div>
+          <div className="h-4 w-2/3 bg-gray-300 rounded animate-pulse"></div>
+        </div>
+      </div>
+    );
+  };
+  

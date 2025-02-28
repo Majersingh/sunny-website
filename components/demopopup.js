@@ -132,7 +132,7 @@ export default function BookDemo({showMe ,setShowme ,skipAutoshow , requestedCou
 
   useEffect(()=>{
     if(requestedCourse)
-    {   console.log(requestedCourse,"ooooooooooo")
+    {
         setValue('courseType',requestedCourse.type)
         setValue('courseName',requestedCourse.name)
     }
